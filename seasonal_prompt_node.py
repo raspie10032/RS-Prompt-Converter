@@ -3,32 +3,32 @@ import random
 # Define the seasonal fashion, backgrounds, weather, time of day, and additional poses and directions
 seasonal_fashion = {
     "spring": {
-        "top": ["light jacket", "floral blouse", "cardigan", "pastel blouse", "lightweight sweater", "spring scarf"],
-        "bottom": ["denim skirt", "ankle boots", "flats", "capris", "culottes", "tulle skirt"],
-        "one_piece": ["floral dress", "pastel jumpsuit", "sundress"],
-        "accessory": ["light scarf", "sunglasses", "bracelet", "anklet"],
-        "hat": ["sunhat", "beret", "wide-brim hat"]
+        "top": ["light jacket", "cardigan", "pastel blouse", "lightweight sweater", "raincoat", "trench coat", "striped tee", "blouse", "windbreaker", "denim jacket", "sweatshirt", "v-neck sweater", "kimono cardigan", "lace top", "peplum top", "bomber jacket"],
+        "bottom": ["denim skirt", "chinos", "capri pants", "culottes", "midi skirt", "tapered pants", "floral skirt", "pleated trousers", "straight-leg jeans", "khaki pants", "paperbag shorts", "cargo pants", "jogger pants", "pencil skirt"],
+        "one_piece": ["floral dress", "skater dress", "wrap dress", "maxi dress", "shirt dress", "tea dress", "pinafore dress", "pleated dress", "tunic dress", "ruffle dress", "sheath dress", "peasant dress", "chiffon dress", "button-front dress", "smock dress", "a-line dress", "patchwork dress", "midi wrap dress", "embroidered dress"],
+        "accessory": ["spring scarf", "belt", "bracelet", "necklace", "watch", "ring", "sunglasses", "hairband", "earrings", "handbag", "tote bag", "anklet", "hair clip", "brooch", "pendant necklace", "bangle", "waist belt", "headband", "stud earrings", "crossbody bag"],
+        "hat": ["beret", "bucket hat", "wide-brim hat", "cloche hat", "sun hat", "trucker hat", "visor cap", "newsboy cap", "boater hat", "panama hat", "fedora", "gambler hat", "pork pie hat", "bowler hat", "cloche hat"]
     },
     "summer": {
-        "top": ["tank top", "t-shirt", "cropped top", "halter top", "bikini top"],
-        "bottom": ["shorts", "swim trunks", "mini skirt", "board shorts", "linen pants", "sarong"],
-        "one_piece": ["sundress", "romper", "swimsuit"],
-        "accessory": ["sunglasses", "beach bag", "shell necklace", "bracelets"],
-        "hat": ["sunhat", "visor", "baseball cap"]
+        "top": ["tank top", "t-shirt", "crop top", "tube top", "camisole", "sports bra", "sleeveless shirt", "off-shoulder top", "tankini top", "polo shirt", "cropped hoodie", "lace bralette", "mesh top"],
+        "bottom": ["shorts", "linen pants", "denim shorts", "biker shorts", "mini skirt", "capri pants", "bermuda shorts", "athletic shorts", "wrap skirt", "high-waisted shorts", "skort", "palazzo pants", "denim capris", "ripped jeans"],
+        "one_piece": ["sundress", "swimsuit", "bikini", "romper", "maxi dress", "slip dress", "halter dress", "off-the-shoulder dress", "tube dress", "backless dress", "wrap dress", "cutout dress", "beach dress", "polo dress", "kaftan", "flounce dress", "shirtdress"],
+        "accessory": ["sunglasses", "bracelet", "necklace", "watch", "ring", "anklet", "hair clip", "beach bag", "shell necklace", "toe ring", "beach bag", "shell anklet", "sunblock", "beach towel", "water bottle", "visor", "beaded bracelet", "statement necklace", "tassel earrings", "wristband"],
+        "hat": ["sunhat", "visor", "bucket hat", "wide-brim hat", "straw hat", "baseball cap", "boater hat", "trilby", "floppy hat", "cowboy hat", "snapback", "pith helmet", "fisherman hat"]
     },
     "autumn": {
-        "top": ["sweater", "cardigan", "flannel shirt", "knitted top", "blazer"],
-        "bottom": ["jeans", "ankle boots", "corduroy pants", "tweed skirt", "leggings", "culottes"],
-        "one_piece": ["sweater dress", "plaid dress", "long sleeve dress"],
-        "accessory": ["scarf", "beanie", "fingerless gloves", "necklace"],
-        "hat": ["beret", "felt hat", "knit cap"]
+        "top": ["sweater", "leather jacket", "cardigan", "flannel shirt", "wool coat", "turtleneck", "poncho", "plaid shirt", "henley", "quilted vest", "corduroy shirt", "fleece pullover", "wool blazer", "oversized cardigan", "knit hoodie"],
+        "bottom": ["jeans", "corduroy pants", "plaid skirt", "leggings", "wide-leg pants", "corduroy pants", "leather pants", "wool skirt", "flannel-lined jeans", "cargo skirt", "denim overalls", "sweatpants", "velvet pants", "harem pants"],
+        "one_piece": ["sweater dress", "knit dress", "tunic dress", "jumper dress", "wrap dress", "midi dress", "maxi dress", "shirt dress", "pinafore dress", "tweed dress", "long-sleeve dress", "suede dress", "layered dress", "knitted dress", "high-neck dress", "bohemian dress", "shift dress"],
+        "accessory": ["scarf", "belt", "bracelet", "necklace", "watch", "ring", "gloves", "shawl", "earrings", "handbag", "knit scarf", "leather gloves", "satchel", "bucket bag", "wrap bracelet", "charm bracelet", "ear cuffs", "wrist watch", "shawl"],
+        "hat": ["beanie", "beret", "fedora", "newsboy cap", "cloche hat", "bucket hat", "trilby", "flat cap", "newsboy cap", "felt hat", "flat cap", "wool fedora", "trapper hat", "knit cap", "pom-pom hat"]
     },
     "winter": {
-        "top": ["wool sweater", "thermal top", "turtleneck", "fleece jacket", "puffer coat"],
-        "bottom": ["thermal leggings", "snow pants", "wool skirt", "corduroy pants", "jeans", "lined trousers"],
-        "one_piece": ["puffer coat dress", "knit dress", "wool dress"],
-        "accessory": ["gloves", "scarf", "earmuffs", "wool socks"],
-        "hat": ["beanie", "fur hat", "knit cap"]
+        "top": ["coat", "wool sweater", "parka", "puffer jacket", "fleece jacket", "down vest", "thermal shirt", "parka", "down jacket", "turtleneck", "knit sweater", "flannel shirt", "fleece hoodie", "quilted jacket", "thermal vest", "cable-knit sweater"],
+        "bottom": ["thermal leggings", "fleece pants", "wool pants", "corduroy pants", "jeans", "thermal pants", "ski pants", "snow pants", "knit pants", "sherpa-lined pants", "velvet leggings", "quilted pants"],
+        "one_piece": ["sweater dress", "knit dress", "tunic dress", "jumper dress", "wrap dress", "midi dress", "maxi dress", "shirt dress", "pinafore dress", "long-sleeve knit dress", "velvet dress", "thermal dress", "cable-knit dress", "quilted dress", "long-sleeve midi dress", "plush dress"],
+        "accessory": ["gloves", "scarf", "belt", "bracelet", "necklace", "watch", "ring", "earmuffs", "hand warmers", "shawl", "wool scarf", "knit gloves", "thermal socks", "leg warmers", "knit beanie", "insulated gloves", "knit headband"],
+        "hat": ["beanie", "wool hat", "mittens", "trapper hat", "knit cap", "pom-pom hat", "thermal beanie", "earflap hat", "cossack hat", "winter beret"]
     }
 }
 
