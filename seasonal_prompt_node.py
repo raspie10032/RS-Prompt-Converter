@@ -1,37 +1,34 @@
-# This code was created using only ChatGPT.
-# 이 코드는 ChatGPT만을 사용하여 만들었습니다.
-
 import random
 
-# 계절별 의상, 배경, 날씨, 시간 정의
+# Define the seasonal fashion, backgrounds, weather, time of day, and additional poses and directions
 seasonal_fashion = {
     "spring": {
-        "top": ["light jacket", "cardigan", "pastel blouse", "lightweight sweater", "raincoat", "trench coat"],
-        "bottom": ["denim skirt", "chinos", "capri pants", "culottes", "midi skirt"],
-        "one_piece": ["floral dress", "skater dress", "wrap dress", "maxi dress", "shirt dress", "tea dress", "pinafore dress", "pleated dress", "tunic dress"],
-        "accessory": ["spring scarf", "belt", "bracelet", "necklace", "watch", "ring", "sunglasses", "hairband", "earrings", "handbag"],
-        "hat": ["beret", "bucket hat", "wide-brim hat", "cloche hat", "sun hat"]
+        "top": ["light jacket", "floral blouse", "cardigan", "pastel blouse", "lightweight sweater", "spring scarf"],
+        "bottom": ["denim skirt", "ankle boots", "flats", "capris", "culottes", "tulle skirt"],
+        "one_piece": ["floral dress", "pastel jumpsuit", "sundress"],
+        "accessory": ["light scarf", "sunglasses", "bracelet", "anklet"],
+        "hat": ["sunhat", "beret", "wide-brim hat"]
     },
     "summer": {
-        "top": ["tank top", "t-shirt", "crop top"],
-        "bottom": ["shorts", "linen pants", "denim shorts", "biker shorts", "mini skirt"],
-        "one_piece": ["sundress", "swimsuit", "bikini", "romper", "maxi dress", "slip dress", "halter dress", "off-the-shoulder dress", "tube dress"],
-        "accessory": ["sunglasses", "bracelet", "necklace", "watch", "ring", "anklet", "hair clip", "beach bag", "shell necklace", "toe ring"],
-        "hat": ["sunhat", "visor", "bucket hat", "wide-brim hat", "straw hat", "baseball cap", "boater hat"]
+        "top": ["tank top", "t-shirt", "cropped top", "halter top", "bikini top"],
+        "bottom": ["shorts", "swim trunks", "mini skirt", "board shorts", "linen pants", "sarong"],
+        "one_piece": ["sundress", "romper", "swimsuit"],
+        "accessory": ["sunglasses", "beach bag", "shell necklace", "bracelets"],
+        "hat": ["sunhat", "visor", "baseball cap"]
     },
     "autumn": {
-        "top": ["sweater", "leather jacket", "cardigan", "flannel shirt", "wool coat", "turtleneck", "poncho"],
-        "bottom": ["jeans", "corduroy pants", "plaid skirt", "leggings", "wide-leg pants"],
-        "one_piece": ["sweater dress", "knit dress", "tunic dress", "jumper dress", "wrap dress", "midi dress", "maxi dress", "shirt dress", "pinafore dress"],
-        "accessory": ["scarf", "belt", "bracelet", "necklace", "watch", "ring", "gloves", "shawl", "earrings", "handbag"],
-        "hat": ["beanie", "beret", "fedora", "newsboy cap", "cloche hat", "bucket hat", "trilby", "flat cap"]
+        "top": ["sweater", "cardigan", "flannel shirt", "knitted top", "blazer"],
+        "bottom": ["jeans", "ankle boots", "corduroy pants", "tweed skirt", "leggings", "culottes"],
+        "one_piece": ["sweater dress", "plaid dress", "long sleeve dress"],
+        "accessory": ["scarf", "beanie", "fingerless gloves", "necklace"],
+        "hat": ["beret", "felt hat", "knit cap"]
     },
     "winter": {
-        "top": ["coat", "wool sweater", "parka", "puffer jacket", "fleece jacket", "down vest", "thermal shirt"],
-        "bottom": ["thermal leggings", "fleece pants", "wool pants", "corduroy pants", "jeans"],
-        "one_piece": ["sweater dress", "knit dress", "tunic dress", "jumper dress", "wrap dress", "midi dress", "maxi dress", "shirt dress", "pinafore dress"],
-        "accessory": ["gloves", "scarf", "belt", "bracelet", "necklace", "watch", "ring", "earmuffs", "hand warmers", "shawl"],
-        "hat": ["beanie", "wool hat", "mittens", "trapper hat", "knit hat", "pom-pom hat"]
+        "top": ["wool sweater", "thermal top", "turtleneck", "fleece jacket", "puffer coat"],
+        "bottom": ["thermal leggings", "snow pants", "wool skirt", "corduroy pants", "jeans", "lined trousers"],
+        "one_piece": ["puffer coat dress", "knit dress", "wool dress"],
+        "accessory": ["gloves", "scarf", "earmuffs", "wool socks"],
+        "hat": ["beanie", "fur hat", "knit cap"]
     }
 }
 
@@ -41,6 +38,7 @@ seasonal_backgrounds = {
     "autumn": ["autumn forest", "prairie", "vineyard", "savannah", "mountain range", "canyon", "pumpkin patch", "harvest field", "cabin in the woods"],
     "winter": ["snowy landscape", "glacier", "mountain range", "canyon", "lakeside", "forest path", "frozen lake", "ice cave", "snowy village"]
 }
+
 seasonal_weather = {
     "spring": ["sunny", "partly cloudy", "light rain", "misty", "drizzling"],
     "summer": ["sunny", "partly cloudy", "clear night", "humid", "dry"],
@@ -55,11 +53,42 @@ seasonal_times = {
     "winter": ["morning", "afternoon", "evening", "night"]
 }
 
-general_composition = ["rule of thirds", "leading lines", "symmetry", "asymmetry", "framing", "depth of field", "negative space", "centered composition", "diagonal lines", "foreground interest", "background interest", "high angle", "low angle", "wide angle", "close-up", "over-the-shoulder shot", "silhouette", "reflections", "motion blur", "bokeh", "tilted frame", "panoramic view", "birds-eye view", "worms-eye view", "extreme close-up", "long shot", "medium shot", "full shot", "medium close-up", "two-shot", "point of view shot", "cut-in", "cutaway", "insert shot", "aerial shot", "establishing shot", "macro shot", "split screen", "close-up of face", "overhead shot", "rear view", "profile view", "three-quarter view", "from below", "from above", "from the side", "wide landscape", "tight frame"]
-gaze_direction = ["looking at the camera", "looking away", "looking to the left", "looking to the right", "looking up", "looking down", "looking over the shoulder", "looking into the distance", "looking at an object", "looking at another person", "looking at the ground", "looking at the sky", "looking back", "looking forward", "side glance", "upward gaze", "downward gaze", "sideways glance", "staring straight ahead", "averting eyes", "focused gaze", "distracted gaze", "curious gaze", "thoughtful gaze", "intense gaze", "soft gaze", "playful gaze", "confident gaze", "shy gaze", "surprised gaze"]
-poses = ["hands on hips", "crossed arms", "one hand in pocket", "both hands in pockets", "arms raised", "hand on chin", "looking over shoulder", "sitting cross-legged", "leaning against a wall", "walking", "jumping", "kneeling", "squatting", "lying down", "hand on head", "arms outstretched", "holding an object", "pointing", "hand on hip", "one leg up", "both hands on face", "spinning", "dancing", "bending forward", "stretching", "leaning back", "holding a prop", "looking up", "looking down", "crouching", "balancing on one leg", "twirling hair", "covering face with hands", "resting chin on hands", "hugging self", "leaning on one leg", "playing with hair", "holding a bag", "holding a hat", "thumbs up", "peace sign", "waving", "hand on heart", "clapping"]
+general_composition = [
+    "rule of thirds", "leading lines", "symmetry", "asymmetry", "framing", "depth of field", "negative space", "centered composition", 
+    "diagonal lines", "foreground interest", "background interest", "high angle", "low angle", "wide angle", "close-up", 
+    "over-the-shoulder shot", "silhouette", "reflections", "motion blur", "bokeh", "tilted frame", "panoramic view", "birds-eye view", 
+    "worms-eye view", "extreme close-up", "long shot", "medium shot", "full shot", "medium close-up", "two-shot", "point of view shot", 
+    "cut-in", "cutaway", "insert shot", "aerial shot", "establishing shot", "macro shot", "split screen"
+]
 
-# 리스트에서 무작위 요소를 선택하는 함수
+gaze_direction = [
+    "looking at the camera", "looking away", "looking to the left", "looking to the right", "looking up", "looking down", "looking over the shoulder", 
+    "looking into the distance", "looking at an object", "looking at another person", "looking at the ground", "looking at the sky", "looking back", 
+    "looking forward", "side glance", "upward gaze", "downward gaze", "sideways glance", "staring straight ahead", "averting eyes", 
+    "focused gaze", "distracted gaze", "curious gaze", "thoughtful gaze", "intense gaze", "soft gaze", "playful gaze", "confident gaze", 
+    "shy gaze", "surprised gaze"
+]
+
+poses = [
+    "hands on hips", "crossed arms", "one hand in pocket", "both hands in pockets", "arms raised", "hand on chin", "looking over shoulder", 
+    "sitting cross-legged", "leaning against a wall", "walking", "jumping", "kneeling", "squatting", "lying down", "hand on head", 
+    "arms outstretched", "holding an object", "pointing", "hand on hip", "one leg up", "both hands on face", "spinning", "dancing", 
+    "bending forward", "stretching", "leaning back", "holding a prop", "looking up", "looking down", "crouching", "balancing on one leg", 
+    "twirling hair", "covering face with hands", "resting chin on hands", "hugging self", "leaning on one leg", "playing with hair", "holding a bag", 
+    "holding a hat", "thumbs up", "peace sign", "waving", "hand on heart", "clapping",
+    # 추가된 포즈
+    "running", "jumping in mid-air", "twirling", "kicking", "reaching out", "leaping", "spinning", "dancing with wide movements", 
+    "skipping", "lunging", "side step", "looking back while walking", "leaning forward as if in motion", "sitting sideways", 
+    "crouching with one knee up"
+]
+
+# 새로운 리스트: 몸의 방향
+body_directions = [
+    "facing forward", "facing left", "facing right", "facing back", "slightly turned left", "slightly turned right", 
+    "turned to the left", "turned to the right", "back to camera", "side profile left", "side profile right"
+]
+
+# Function to get random element from a list
 def get_random_element(lst):
     return random.choice(lst)
 
@@ -69,7 +98,7 @@ class SeasonalFashionPromptNode:
         return {
             "required": {
                 "season": (["spring", "summer", "autumn", "winter"],),
-                "seed": ("INT", {"default": 123456789012}),  # 기본 12자리 시드 값
+                "seed": ("INT", {"default": 123456789012}),  # Default 12-digit seed
             }
         }
     
@@ -77,21 +106,19 @@ class SeasonalFashionPromptNode:
     FUNCTION = "generate_prompt"
 
     def generate_prompt(self, season, seed):
-        random.seed(seed)  # 각 시드 값에 대해 다른 결과를 보장하기 위해 무작위 시드 설정
+        random.seed(seed)  # Set the random seed to ensure different results for each seed
         fashion_category = seasonal_fashion[season]
-        if random.choice([True, False]):  # 상의와 하의를 한 세트로 선택
-            top = get_random_element(fashion_category["top"])
-            bottom = get_random_element(fashion_category["bottom"]) if fashion_category["bottom"] else ""
-            one_piece = ""
-        else:  # 원피스를 선택
-            top = ""
-            bottom = ""
-            one_piece = get_random_element(fashion_category["one_piece"]) if fashion_category["one_piece"] else ""
-
+        top = get_random_element(fashion_category["top"])
+        bottom = get_random_element(fashion_category["bottom"])
+        one_piece = get_random_element(fashion_category["one_piece"])
         accessory = get_random_element(fashion_category["accessory"]) if fashion_category["accessory"] else ""
         hat = get_random_element(fashion_category["hat"]) if fashion_category["hat"] else ""
 
-        fashion = ", ".join(filter(None, [top, bottom, one_piece, accessory, hat]))
+        # Choose between top/bottom or one-piece outfit
+        if random.choice([True, False]):
+            fashion = ", ".join(filter(None, [top, bottom, accessory, hat]))
+        else:
+            fashion = ", ".join(filter(None, [one_piece, accessory, hat]))
 
         background = get_random_element(seasonal_backgrounds[season])
         weather = get_random_element(seasonal_weather[season])
@@ -99,8 +126,8 @@ class SeasonalFashionPromptNode:
         composition = get_random_element(general_composition)
         gaze = get_random_element(gaze_direction)
         pose = get_random_element(poses)
+        body_direction = get_random_element(body_directions)
 
-        # 추가적인 상황 반영
         additional_situations = {
             "wet clothes": ["water", "light rain", "misty", "drizzling", "rainy"],
             "sweating": ["sunny", "humid"],
@@ -136,7 +163,7 @@ class SeasonalFashionPromptNode:
                                if any(condition in background or condition in weather or condition in time for condition in conditions)]
 
         additional_situation = ", ".join(selected_situations)
-        prompt = f"{season}, {fashion}, {background}, {weather}, {time}, {composition}, {gaze}, {pose}, {additional_situation}"
+        prompt = f"{season}, {fashion}, {background}, {weather}, {time}, {composition}, {gaze}, {pose}, {body_direction}, {additional_situation}"
         return (prompt,)
 
 # 커스텀 노드 등록
