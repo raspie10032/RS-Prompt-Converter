@@ -1,45 +1,67 @@
 import re
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, Tuple, Match
 
-# Weight conversion constants
+# Constants
 NOVEL_AI_BRACKET = 0.95
 NOVEL_AI_BRACE = 1.05
+ARTIST_PREFIX = "artist:"
+ARTIST_TEMP = "artist_"
 
-# Function to convert Novel AI to ComfyUI
+# Compile frequently used regex patterns
+WEIGHT_PATTERN = re.compile(r'\(([^:]+):([\d.]+)\)')
+ARTIST_PATTERN = re.compile(rf'{ARTIST_PREFIX}([a-zA-Z0-9]+)_([a-zA-Z0-9]+)')
+BRACKET_BRACE_PATTERN = re.compile(r'[\[\{]+([^\]\}]+)[\]\}]+')
+
 def convert_novelai_to_comfyui(prompt: str) -> str:
+    """
+    Convert Novel AI prompt format to ComfyUI format.
+    
+    Args:
+        prompt (str): The input prompt in Novel AI format.
+    
+    Returns:
+        str: The converted prompt in ComfyUI format.
+    
+    Raises:
+        ValueError: If an error occurs during conversion.
+    """
     try:
-        # Function to find brackets and braces and calculate the weight
-        def replace_weights(match):
+        def replace_weights(match: Match[str]) -> str:
+            """Calculate and replace weights for matched brackets and braces."""
             text = match.group(1)
             weight = 1.0
-
-            # Apply weights
             for char in match.group(0):
                 if char == '[':
                     weight *= NOVEL_AI_BRACKET
                 elif char == '{':
                     weight *= NOVEL_AI_BRACE
-
-            # Round to one decimal place
-            weight = round(weight, 1)
             return f'({text}:{weight:.1f})'
 
-        # Find patterns with brackets and braces and convert weights
-        prompt = re.sub(r'[\[\{]+([^\]\}]+)[\]\}]+', replace_weights, prompt)
+        prompt = BRACKET_BRACE_PATTERN.sub(replace_weights, prompt)
         return prompt
     except Exception as e:
-        raise RuntimeError(f"An error occurred during conversion to ComfyUI: {str(e)}")
+        raise ValueError(f"An error occurred during conversion to ComfyUI: {str(e)}")
 
-# Function to convert ComfyUI to Novel AI
 def convert_comfyui_to_novelai(prompt: str) -> str:
+    """
+    Convert ComfyUI prompt format to Novel AI format.
+    
+    Args:
+        prompt (str): The input prompt in ComfyUI format.
+    
+    Returns:
+        str: The converted prompt in Novel AI format.
+    
+    Raises:
+        ValueError: If an error occurs during conversion.
+    """
     try:
-        # Convert "artist:" to "artist_"
-        prompt = prompt.replace("artist:", "artist_")
+        prompt = prompt.replace(ARTIST_PREFIX, ARTIST_TEMP)
 
-        # Function to convert the weight of general text
-        def replace_match(match):
-            text = match.group(1)
-            weight = float(match.group(2))
+        def replace_match(match: Match[str]) -> str:
+            """Convert the weight of general text to Novel AI format."""
+            text, weight_str = match.groups()
+            weight = float(weight_str)
             if weight == 1.0:
                 return text
             elif weight < 1.0:
@@ -49,34 +71,26 @@ def convert_comfyui_to_novelai(prompt: str) -> str:
                 braces = int(round((weight - 1) / (NOVEL_AI_BRACE - 1)))
                 return '{' * braces + text + '}' * braces
 
-        # Find patterns with text and weight and convert
-        pattern = re.compile(r'\(([^:]+):([\d.]+)\)')
-        prompt = pattern.sub(replace_match, prompt)
+        # Handle nested weights
+        while re.search(WEIGHT_PATTERN, prompt):
+            prompt = WEIGHT_PATTERN.sub(replace_match, prompt)
 
-        # Handle consecutive commas
         prompt = re.sub(r',\s*,', ', ', prompt)
-
-        # Remove incomplete parentheses
         prompt = re.sub(r'(?<!\()\(|\)(?!\))', '', prompt)
-
-        # Remove backslashes
         prompt = prompt.replace('\\', '')
+        prompt = prompt.replace(ARTIST_TEMP, ARTIST_PREFIX)
 
-        # Convert "artist_" back to "artist:"
-        prompt = prompt.replace("artist_", "artist:")
-
-        # Convert "artist:aa_bb" to "artist:aa_(bb)"
-        def artist_format(match):
+        def artist_format(match: Match[str]) -> str:
+            """Format artist name and alias."""
             artist_name, artist_alias = match.groups()
-            return f'artist:{artist_name}_({artist_alias})'
+            return f'{ARTIST_PREFIX}{artist_name}_({artist_alias})'
 
-        prompt = re.sub(r'artist:([a-zA-Z0-9]+)_([a-zA-Z0-9]+)', artist_format, prompt)
+        prompt = ARTIST_PATTERN.sub(artist_format, prompt)
 
         return prompt
     except Exception as e:
-        raise RuntimeError(f"An error occurred during conversion to Novel AI: {str(e)}")
+        raise ValueError(f"An error occurred during conversion to Novel AI: {str(e)}")
 
-# Define the custom node class for ComfyUI
 class PromptConverterNode:
     @staticmethod
     def INPUT_TYPES() -> Dict[str, Any]:
@@ -100,6 +114,16 @@ class PromptConverterNode:
 
     @staticmethod
     def convert_prompt(prompt: str, conversion_type: bool) -> Tuple[str]:
+        """
+        Convert the input prompt based on the specified conversion type.
+        
+        Args:
+            prompt (str): The input prompt to convert.
+            conversion_type (bool): True for ComfyUI to NAI, False for NAI to ComfyUI.
+        
+        Returns:
+            Tuple[str]: A tuple containing the converted prompt.
+        """
         if conversion_type:
             return (convert_comfyui_to_novelai(prompt),)
         else:
